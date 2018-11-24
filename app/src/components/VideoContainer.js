@@ -5,24 +5,15 @@ import ImageLoader from 'react-loading-image'
 export default class VideoContainer extends Component {
     state = {
         imageHash: 0,
-        imageName: 'http://localhost:3000/test.jpg',
-        value: '',
-        data: {}
+        imageName: 'http://localhost:3000/images/test.jpg',
+        value: ''
     };
 
     componentDidMount() {
-        setTimeout(() => {
-
-            fetch('http://localhost:3000/test.json')
-			.then(response => response.json())
-			.then(data => {
-                console.log(data);
-				this.setState({data: data })
-		    })
-			.catch(err => console.error(this.props.url, err.toString()))
-
+        setInterval(() => {
+            const img_hash = Date.now()
             this.setState({
-                imageHash: Date.now()
+                imageHash: img_hash
             });
         }, 1000);
     }
@@ -34,20 +25,27 @@ export default class VideoContainer extends Component {
       }
     
       render() {
-        const {imageName, imageHash, data} = this.state;
+        const {imageName, imageHash} = this.state;
 
-        const imagePath = imageName + '?' + imageHash;
+        const imgPath = imageName + '?' + imageHash;
+
+        const style = {
+            width: 640,
+            height: 480
+        }
+
         return (
           <div>
-            <p>{imagePath}</p>
+            <p>{imgPath}</p>
             <div>
-              {imageName && (
+              { 
                 <ImageLoader
-                  src={imagePath}
+                  src={imgPath}
+                  style={style}
                   loading={() => <div>Loading...</div>}
                   error={() => <div>Error</div>}
                   />
-              )}
+              }
             </div>
           </div>
         );

@@ -6,12 +6,14 @@ import ShoppingCart from './ShoppingCart'
 export default class MainLayout extends Component {
     render() {
         return (
+            <div className="mainlayout">
             <Container>
-                <Row>
-                <Col><VideoContainer></VideoContainer></Col>
-                <Col><ShoppingCart></ShoppingCart></Col>
-                </Row>
+                <div className="text-center">
+                    <VideoContainer></VideoContainer>
+                    <ShoppingCart></ShoppingCart>
+                </div>
             </Container>
+            </div>
         )
     }
 }
