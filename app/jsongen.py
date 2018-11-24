@@ -1,11 +1,20 @@
 import json
 
-data = {}    
-data = {  
-    'id': 1,
-    'name': 'banana',
-    'amount': 3
-}
+data = []    
+data = [
+    {  
+        'id': 1,
+        'title': 'Coca-Cola',
+        'price': 80,
+        'amount': 1
+    },
+    {
+        'id': 2,
+        'title': 'Banana',
+        'price': 10,
+        'amount': 2
+    }
+]
 
 # data = {}  
 # data['people'] = []  
@@ -25,5 +34,5 @@ data = {
 #     'from': 'Alabama'
 # })
 
-with open('public/test.json', 'w') as outfile:  
+with open('public/json/test.json', 'w') as outfile:  
     json.dump(data, outfile)

@@ -5,7 +5,7 @@ import ImageLoader from 'react-loading-image'
 export default class VideoContainer extends Component {
     state = {
         imageHash: 0,
-        imageName: 'http://localhost:3000/images/test.jpg',
+        imageName: 'http://localhost:3000/images/frame.png',
         value: ''
     };
 
@@ -36,7 +36,7 @@ export default class VideoContainer extends Component {
 
         return (
           <div>
-            <p>{imgPath}</p>
+            
             <div>
               { 
                 <ImageLoader
