@@ -17,11 +17,12 @@ export default class VideoContainer extends Component {
   
     render() {
       const { response } = this.state;
+      console.log(response);
       return (
 
         <div>
           <div>
-            <img src={'data:image/jpeg;base64,' + response} alt=""/>
+            <img src={'data:image/jpeg;base64,' + response.buffer} alt=""/>
           </div>
         </div>
       );
