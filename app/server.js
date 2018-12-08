@@ -8,14 +8,12 @@ const io = require('socket.io')(server);
 //  To run server run in console:
 //  npx nodemon server
 
-const FPS = 30
+const FPS = 10
 const PORT = 3000
 
 const wCap = new cv.VideoCapture(0);
-
-// app.get('build', (req, res) => {
-//   res.sendFile(path.join(__dirname, 'index.html'))
-// })
+wCap.set(cv.CAP_PROP_FRAME_HEIGHT, 480);
+wCap.set(cv.CAP_PROP_FRAME_WIDTH, 640);
 
 server.listen(PORT, function(){
   console.log('Listening to requests on port', PORT);
@@ -25,6 +23,6 @@ setInterval(() => {
   const frame = wCap.read();
   const image = cv.imencode('.jpg', frame).toString('base64');
   io.emit('image', image);
-}, 1000/FPS);
+}, 1000 / FPS);
 
 app.use(express.static('build'));
