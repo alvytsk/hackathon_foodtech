@@ -1,53 +1,29 @@
 import React, { Component } from 'react'
-import Webcam from "react-webcam";
-import ImageLoader from 'react-loading-image'
+import io from "socket.io-client";
 
 export default class VideoContainer extends Component {
     state = {
-        imageHash: 0,
-        imageName: 'http://localhost:3000/images/frame.png',
-        value: ''
+      response: false,
+      endpoint: "http://localhost:3000"
     };
 
     componentDidMount() {
-        setInterval(() => {
-            const img_hash = Date.now()
-            this.setState({
-                imageHash: img_hash
-            });
-        }, 1000);
+      const { endpoint } = this.state;
+      const socket = io.connect(endpoint);
+      socket.on("image", data => {
+        this.setState({ response: data })
+      });
     }
+  
+    render() {
+      const { response } = this.state;
+      return (
 
-    onChange = (e) => {
-        this.setState({
-          value: e.target.value
-        });
-      }
-    
-      render() {
-        const {imageName, imageHash} = this.state;
-
-        const imgPath = imageName + '?' + imageHash;
-
-        const style = {
-            width: 640,
-            height: 480
-        }
-
-        return (
+        <div>
           <div>
-            
-            <div>
-              { 
-                <ImageLoader
-                  src={imgPath}
-                  style={style}
-                  loading={() => <div>Loading...</div>}
-                  error={() => <div>Error</div>}
-                  />
-              }
-            </div>
+            <img src={'data:image/jpeg;base64,' + response} alt=""/>
           </div>
-        );
-      }
+        </div>
+      );
+    }
 }
