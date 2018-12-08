@@ -8,7 +8,7 @@ const io = require('socket.io')(server);
 //  To run server run in console:
 //  npx nodemon server
 
-const FPS = 10
+const FPS = 30
 const PORT = 3000
 
 const wCap = new cv.VideoCapture(0);
