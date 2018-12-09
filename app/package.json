@@ -7,7 +7,6 @@
     "express": "^4.16.4",
     "fs": "0.0.1-security",
     "node-watch": "^0.5.9",
-    "opencv4nodejs": "^4.11.0",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
     "react-loading-image": "^0.5.0",
